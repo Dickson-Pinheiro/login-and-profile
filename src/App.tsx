@@ -1,12 +1,16 @@
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Router from './router';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 function App() {
+  const queryClient = new QueryClient()
+
   return (
-    <>
-      <div className="bg-red-500">test</div>
+    <QueryClientProvider client={queryClient}>
+      <Router />
       <ToastContainer />
-    </>
+    </QueryClientProvider>
   )
 }
 

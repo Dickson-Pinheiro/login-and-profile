@@ -1,20 +1,20 @@
 import axios from "axios";
 import {toast} from 'react-toastify'
 
-const axiosClient = axios.create();
+const axiosClient = axios.create({
+  baseURL: import.meta.env.VITE_BASE_URL,
+  headers: {
+    "Content-Type": "application/json",
+    Accept: "application/json;version=v1_web",
+  }
+});
  
-axiosClient.defaults.baseURL = import.meta.env.VITE_BASE_URL;
- 
-axiosClient.defaults.headers.common = {
-  "Content-Type": "application/json",
-  Accept: "application/json",
-}
 
 axiosClient.interceptors.request.use(
     (config) => {
       const token = localStorage.getItem("access-token");
       if (token) {
-        config.headers!["Authorization"] = `Bearer ${token}`;
+        config.headers!["Authorization"] = `${token}`;
       }
       return config;
     },
@@ -31,18 +31,15 @@ axiosClient.interceptors.response.use(
       const originalConfig = err.config;
    
       if (originalConfig.url !== "/auth/login" && err.response) {
-        if (err.response.status === 401 && !originalConfig._retry) {
+        if (err.response.status === 403 && !originalConfig._retry) {
           originalConfig._retry = true;
    
           try {
-            const rs = await axios.put(`${import.meta.env.VITE_BASE_URL}/auth/refresh`,{}, {
-              headers: {
-                Authorization: `Bearer ${localStorage.getItem("refresh-token")}`!,
-              },
+            const rs = await axios.post(`${import.meta.env.VITE_BASE_URL}/auth/refresh/`,{
+              refresh: localStorage.getItem('refresh-token')
             });
    
-            const access = rs.data.data["access-token"];
-   
+            const access = rs.data.tokens["access"];
             localStorage.setItem("access-token", access);
    
             return axiosClient(originalConfig);
@@ -59,6 +56,5 @@ axiosClient.interceptors.response.use(
       return Promise.reject(err);
     }
   );
-   
  
 export default axiosClient;
