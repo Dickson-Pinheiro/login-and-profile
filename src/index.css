@@ -9,9 +9,12 @@
         --color-white-1: 253, 253, 253;
         --color-white-3: 241, 241, 241;
         --color-white-2: 250, 250, 250;
+        --color-white-4: 244, 244, 244;
         --color-black-2: 38, 38, 38;
         --color-gray-6: 153, 153, 153;
+        --color-black-1: 47, 47, 47;
         --color-red-1: 255, 0, 0;
+        --color-blue-3: 241, 245, 249;
     }
     *, html {
         font-family: "Nunito", sans-serif;

@@ -55,7 +55,7 @@ function LoginForm() {
                 onChange={formikProps.handleChange}
                 value={formikProps.values.password}
               />
-              <CustomButton  type='submit' loading={isPending} disabled={isPending}>
+              <CustomButton className='mx-auto'  type='submit' loading={isPending} disabled={isPending}>
                 Sign In
               </CustomButton>
             </Form>

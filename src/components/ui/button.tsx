@@ -12,7 +12,7 @@ const CustomButton = forwardRef<HTMLButtonElement, CustomButtonProps>(({ classNa
     <button
       {...props}
       ref={ref}
-      className={cn('bg-blue2 w-full h-[54px] rounded-[9px] text-white2 text-lg font-bold flex justify-center items-center gap-2', className)}
+      className={cn('bg-blue2 w-full max-w-[385.88px] h-[54px] rounded-[9px] text-white2 text-lg font-bold flex justify-center items-center gap-2', className)}
     >
         {props.children}
         {loading && <span className='animate-spin'><AiOutlineLoading3Quarters/></span>}
