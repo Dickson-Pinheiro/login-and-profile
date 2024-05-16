@@ -1,16 +1,6 @@
 import { jwtDecode } from "jwt-decode";
 
 export default function useAuth() {
-    const isTokenExpired = (token: string) => {
-        try {
-            const decodedToken = jwtDecode(token)
-            const currentTime = Date.now() / 1000;
-            return decodedToken.exp as number < currentTime;
-        } catch (error) {
-            return true;
-        }
-    };
-
 
     function isAuthenticated() {
         const refreshToken = localStorage.getItem('refresh-token')
@@ -27,5 +17,5 @@ export default function useAuth() {
         window.location.href = window.location.origin
     }
 
-    return { isAuthenticated, isTokenExpired, logout }
+    return { isAuthenticated, logout }
 }
