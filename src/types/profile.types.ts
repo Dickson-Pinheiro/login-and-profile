@@ -7,7 +7,8 @@ export interface IProfileResponse {
         image_low_url: string
     },
     name: string,
-    is_active: boolean
+    last_name?: string, 
+    is_active: boolean,
     email: string,
     role: {
         value: number,
