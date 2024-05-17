@@ -39,6 +39,7 @@ function LoginForm() {
             <Form className="flex flex-col gap-[27px]" onSubmit={formikProps.handleSubmit}>
               <CustomInput
                 label="E-mail"
+                data-cy="email-input"
                 type="email"
                 errorMessage={formikProps.errors.email}
                 placeholder="@gmail.com"
@@ -48,6 +49,7 @@ function LoginForm() {
               />
               <CustomInput
                 label="Password"
+                data-cy="password-input"
                 type="password"
                 errorMessage={formikProps.errors.password}
                 placeholder="**********"
@@ -55,7 +57,7 @@ function LoginForm() {
                 onChange={formikProps.handleChange}
                 value={formikProps.values.password}
               />
-              <CustomButton className='mx-auto'  type='submit' loading={isPending} disabled={isPending}>
+              <CustomButton className='mx-auto' data-cy="submit-login"  type='submit' loading={isPending} disabled={isPending}>
                 Sign In
               </CustomButton>
             </Form>

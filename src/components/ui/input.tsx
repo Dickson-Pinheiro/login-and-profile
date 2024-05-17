@@ -10,8 +10,8 @@ const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(({ errorMessa
   
 
   return (
-    <div className="flex flex-col gap-2 tracking-wide">
-      {label && <label className='text-black2 font-bold text-lg leading-6'>{label}</label>}
+    <div className="flex flex-col gap-2">
+      {label && <label htmlFor={props?.id ?? ""} className='text-black2 font-bold text-lg leading-6 tracking-wide'>{label}</label>}
       <input
         {...props}
         ref={ref}

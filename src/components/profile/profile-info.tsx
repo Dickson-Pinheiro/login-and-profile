@@ -15,11 +15,13 @@ export default function ProfileInfo() {
 					src={data?.data?.avatar?.image_high_url as string}
 					fallbackImage={[data?.data?.avatar?.image_medium_url as string, data?.data?.avatar?.image_low_url as string, profileImage]}
 					alt="profile picture image"
-					className="max-w-[58px] w-full rounded-lg" />
+					className="max-w-[58px] w-full rounded-lg" 
+                    initialImage={profileImage}
+                    />
             </div>
             <div className="flex flex-col gap-5">
-                <DisplayInfo name="Name" content={`${data?.data?.name as string}${data?.data?.last_name ? ` ${data.data.last_name}` : ''}`} />
-                <DisplayInfo name="E-Mail" content={data?.data?.email as string} />
+                <DisplayInfo data-cy="display-name" name="Name" content={`${data?.data?.name as string ?? ''}${data?.data?.last_name ? ` ${data.data.last_name}` : ''}`} />
+                <DisplayInfo data-cy="display-email" name="E-Mail" content={data?.data?.email as string} />
             </div>
         </Card>
     )
