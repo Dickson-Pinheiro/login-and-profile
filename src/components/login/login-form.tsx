@@ -14,15 +14,16 @@ function LoginForm() {
     const {mutateAsync: login, isPending} = UseUserLogin()
     const navigate = useNavigate()
 
-    async function submitLogin({email, password}: ILoginInfo){
+    async function submitLogin(values: ILoginInfo){
         try {
-            const result = await login({email, password})
+            const result = await login({email: values.email, password: values.password})
             const access = result.data.tokens.access
             const refresh = result.data.tokens.refresh
             localStorage.setItem('access-token', access)
             localStorage.setItem('refresh-token', refresh)
             navigate('/profile')
         } catch (error: any) {
+            values.password = ""
             toast.error(error?.response?.data?.detail)
         }
     }
