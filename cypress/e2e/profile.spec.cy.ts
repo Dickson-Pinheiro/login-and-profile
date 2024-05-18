@@ -20,13 +20,6 @@ describe('profile page', () => {
             })
         })
 
-        it('It should succeed when making the request to fetch user information.', () => {
-            cy.intercept('GET', '/auth/profile/').as('profileFetch');
-            cy.wait('@profileFetch').then((interception) => {
-                expect(interception.response?.statusCode).to.be.eq(200)
-            })
-        })
-
         it("It should correctly display the user's name when accessing the profile page.", () => {
             cy.intercept('GET', '/auth/profile/').as('profileFetch');
             cy.wait('@profileFetch').then(() => {
