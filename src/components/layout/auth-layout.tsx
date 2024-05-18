@@ -9,7 +9,7 @@ export default function AuthLayout() {
         if (!isAuth) {
             logout()
         }
-    }, [])
+    }, [logout, isAuthenticated])
     return (
         <>
             <Outlet />

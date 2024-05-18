@@ -42,7 +42,7 @@ describe('login page', () => {
     cy.get('[data-cy="email-input"]').type(Cypress.env('valid_email'))
     cy.get('[data-cy="password-input"]').type(Cypress.env('valid_password'))
     cy.get('[data-cy="submit-login"]').click()
-    cy.wait('@loginFetch').then((_interception) => {
+    cy.wait('@loginFetch').then(() => {
       cy.getAllLocalStorage().then((result) => {
         console.log(result)
         expect(result[Cypress.env('base_url')]).deep.keys(['access-token', 'refresh-token'])

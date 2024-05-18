@@ -12,7 +12,7 @@ export default function LoginPage(){
         if(isAuth){
             navigate('/profile')
         }
-    }, [])
+    }, [isAuthenticated, navigate])
     
     return(
         <div className="p-4 bg-white2 min-h-screen w-full flex justify-center">

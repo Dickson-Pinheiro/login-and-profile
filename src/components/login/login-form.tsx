@@ -8,7 +8,7 @@ import { ILoginInfo } from '../../types/auth.types';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import logoB2bit from '../../assets/B2Bit-Logo.png'
-
+import { AxiosError } from 'axios';
 
 function LoginForm() {
     const {mutateAsync: login, isPending} = UseUserLogin()
@@ -22,9 +22,10 @@ function LoginForm() {
             localStorage.setItem('access-token', access)
             localStorage.setItem('refresh-token', refresh)
             navigate('/profile')
-        } catch (error: any) {
+        } catch (error) {
+          const axiosError = error as AxiosError<{detail: string}>;
             values.password = ""
-            toast.error(error?.response?.data?.detail)
+            toast.error(axiosError?.response?.data?.detail)
         }
     }
 

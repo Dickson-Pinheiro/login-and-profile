@@ -29,14 +29,14 @@ describe('profile page', () => {
 
     it("It should correctly display the user's name when accessing the profile page.", () => {
         cy.intercept('GET', '/auth/profile/').as('profileFetch');
-        cy.wait('@profileFetch').then((_interception) => {
+        cy.wait('@profileFetch').then(() => {
             cy.get('[data-cy="display-name"]').contains(Cypress.env('valid_profile_name'))
         })
     })
 
     it("It should correctly display the user's e-mail when accessing the profile page.", () => {
         cy.intercept('GET', '/auth/profile/').as('profileFetch');
-        cy.wait('@profileFetch').then((_interception) => {
+        cy.wait('@profileFetch').then(() => {
             cy.get('[data-cy="display-email"]').contains(Cypress.env('valid_profile_email'))
         })
     })
