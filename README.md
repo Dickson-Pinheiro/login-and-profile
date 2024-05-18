@@ -2,6 +2,8 @@
 
 Este projeto foi desenvolvido como parte de um processo seletivo, seguindo as histórias e layout disponibilizados. Ele consiste em uma aplicação web simples que inclui uma página de login e uma página de informações do perfil do usuário. A aplicação foi construída utilizando ReactJs, com Vite, typescript, taiwindcss, entre outras bibliotecas.
 
+O deploy da aplicação foi feito [aqui](https://login-and-profile.vercel.app/ ).
+
 ## Funcionalidades
 
 - **Página de Login**: Permite que os usuários se autentiquem utilizando e-mail e senha.
@@ -102,16 +104,17 @@ Os testes end-to-end foram criados utilizando o Cypress, e, para gerar dados ale
 Com os passos anteriores já realizados, crie um arquivo `cypress.env.json` no diretório raiz do projeto com o seguinte conteúdo:
 
 ```json
-{
-  "base_url": "http://seu-endereco.com",
-  "valid_email": "email@valido.com",
-  "valid_password": "senhaValida",
-  "valid_profile_name": "Nome do Usuário",
-  "valid_profile_email": "email@valido.com"
-}
+  {
+    "base_url": "http://localhost:5173",
+    "valid_email": "cliente@youdrive.com",
+    "valid_password": "password",
+    "valid_profile_name": "Cliente",
+    "valid_profile_email": "cliente@youdrive.com"
+  }
+
 ```
 
-Existe um arquivo chamado `cypress.env.example.json` contendo todas as variáveis de ambiente necessárias. Basta duplicar o arquivo e renomeá-lo para `cypress.env.example.json`
+Existe um arquivo chamado `cypress.env.example.json` contendo todas as variáveis de ambiente necessárias. Basta duplicar o arquivo e renomeá-lo para `cypress.env.example.json`. Como se trata de um teste, as variáveis de ambiente estão públicas no repositório.
 
 ### 2. Executando os testes
 
@@ -127,6 +130,7 @@ Ou, caso prefira visualizar na interface gráfica do cypress:
     npx cypress open
 ```
 
+Lembre-se que, para que os testes sejam executados com sucesso, a aplicação também deve ter sido executada. Portanto, abra dois terminais e execute o projeto em um deles, e o teste no outro.
 
 ### 3. Descrição dos Casos de Teste
 
