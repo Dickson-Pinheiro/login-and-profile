@@ -134,7 +134,7 @@ Lembre-se que, para que os testes sejam executados com sucesso, a aplicação ta
 
 ### 3. Descrição dos Casos de Teste
 
-#### login.spec.js
+#### login.spec.cy.ts
 ```
 1. **The page should load correctly**  
    Verifica se a página inicial carrega corretamente.
@@ -155,7 +155,7 @@ Lembre-se que, para que os testes sejam executados com sucesso, a aplicação ta
    Verifica se a página permanece na mesma página se a senha estiver incorreta.
 ```
 
-#### profile.spec.js
+#### profile.spec.cy.ts
 
 
 #### Authenticated access to the profile route
