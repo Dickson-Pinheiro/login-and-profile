@@ -18,15 +18,6 @@ describe('login page', () => {
     })
   })
 
-  it('It should change to the authenticated route when the credentials are valid', () => {
-    cy.get('[data-cy="email-input"]').type(Cypress.env('valid_email'))
-    cy.get('[data-cy="password-input"]').type(Cypress.env('valid_password'))
-    cy.get('[data-cy="submit-login"]').click()
-    cy.location().should((loc) => {
-      expect(loc.pathname).to.eq('/profile')
-    })
-  })
-
   it('It should return status code 200 when the credentials are valid.', () => {
     cy.intercept('POST', '/auth/login/').as('loginFetch');
     cy.get('[data-cy="email-input"]').type(Cypress.env('valid_email'))

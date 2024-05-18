@@ -1,6 +1,6 @@
-# Projeto de Sistema de Autenticação e Perfil de Usuário
+# Projeto de Sistema de Login e Perfil de Usuário
 
-Este projeto foi desenvolvido como parte de um processo seletivo. Ele consiste em uma aplicação web simples que inclui uma página de login e uma página de informações do perfil do usuário. A aplicação foi construída utilizando ReactJs, com Vite, typescript, taiwindcss, entre outras bibliotecas.
+Este projeto foi desenvolvido como parte de um processo seletivo, seguindo as histórias e layout disponibilizados. Ele consiste em uma aplicação web simples que inclui uma página de login e uma página de informações do perfil do usuário. A aplicação foi construída utilizando ReactJs, com Vite, typescript, taiwindcss, entre outras bibliotecas.
 
 ## Funcionalidades
 
@@ -27,8 +27,8 @@ Este projeto foi desenvolvido como parte de um processo seletivo. Ele consiste e
 
 1. Clone o repositório para sua máquina local:
     ```bash
-    git clone https://github.com/seu-usuario/nome-do-repositorio.git
-    cd nome-do-repositorio
+    git clone https://github.com/Dickson-Pinheiro/login-and-profile.git
+    cd login-and-profile
     ```
 ## Execução
 
@@ -45,7 +45,7 @@ Este projeto foi desenvolvido como parte de um processo seletivo. Ele consiste e
 
 3. Inicie o servidor:
     ```bash
-    npm start
+    npm run dev
     ```
 
 6. Acesse a aplicação em `http://localhost:5173/` (ou a porta configurada).
@@ -91,11 +91,97 @@ Este projeto foi desenvolvido como parte de um processo seletivo. Ele consiste e
 ├── tsconfig.json            # Configuração do typescript para aplicação
 ├── tsconfig.node.json       # Configuração do typescript para o node
 └── vite.config.ts           # Documentação do projeto
+```
+
+## Testes e2e
+
+Os testes end-to-end foram criados utilizando o Cypress, e, para gerar dados aleatórios, utilizamos a biblioteca faker, para evitar dados tendenciosos. Esta seção descreve como configurar e executar testes utilizando Cypress, incluindo a definição de variáveis de ambiente e a descrição detalhada de cada caso de teste.
+
+### 1. Definir Variáveis de Ambiente
+
+Com os passos anteriores já realizados, crie um arquivo `cypress.env.json` no diretório raiz do projeto com o seguinte conteúdo:
+
+```json
+{
+  "base_url": "http://seu-endereco.com",
+  "valid_email": "email@valido.com",
+  "valid_password": "senhaValida",
+  "valid_profile_name": "Nome do Usuário",
+  "valid_profile_email": "email@valido.com"
+}
+```
+
+Existe um arquivo chamado `cypress.env.example.json` contendo todas as variáveis de ambiente necessárias. Basta duplicar o arquivo e renomeá-lo para `cypress.env.example.json`
+
+### 2. Executando os testes
+
+Para executar os testes, basta iniciá-lo com o seguinte comando no terminal:
+
+ ```bash
+    npx cypress run
+  ```
+
+Ou, caso prefira visualizar na interface gráfica do cypress:
+
+```bash
+    npx cypress open
+```
 
 
+### 3. Descrição dos Casos de Teste
 
----
+#### login.spec.js
+```
+1. **The page should load correctly**  
+   Verifica se a página inicial carrega corretamente.
 
-Desenvolvido com ❤️ por [Seu Nome].
+2. **should change to the authenticated route when the credentials are valid**  
+   Testa se a rota muda para a rota autenticada quando as credenciais são válidas.
 
----
+3. **It should return status code 200 when the credentials are valid**  
+   Verifica se a resposta da requisição de login retorna status 200 quando as credenciais são válidas.
+
+4. **It should include the access tokens in localStorage when the credentials are valid**  
+   Verifica se os tokens de acesso são incluídos no localStorage após o login com credenciais válidas.
+
+5. **It should remain on the same page if the e-mail is incorrect**  
+   Verifica se a página permanece na mesma rota se o e-mail estiver incorreto.
+
+6. **It should remain on the same page if the password is incorrect**  
+   Verifica se a página permanece na mesma página se a senha estiver incorreta.
+```
+
+#### profile.spec.js
+
+
+#### Authenticated access to the profile route
+
+```
+
+1. **It should be on the authenticated route.**  
+   Verifica se a rota acessada é autenticada após o login.
+
+2. **It should succeed when making the request to fetch user information.**  
+   Verifica se a requisição para obter informações do usuário retorna status 200.
+
+3. **It should succeed when making the request to fetch user information.**  
+   Verifica se a requisição para obter informações do usuário retorna status 200.
+
+4. **It should correctly display the user's name when accessing the profile page.**  
+   Verifica se o nome do usuário é exibido corretamente na página de perfil.
+
+5. **It should correctly display the user's e-mail when accessing the profile page.**  
+   Verifica se o e-mail do usuário é exibido corretamente na página de perfil.
+```
+
+#### Unauthenticated access to the profile route
+```
+1. **It should be redirected to the unauthenticated page when there are no valid tokens.**  
+   Verifica se é redirecionado para a página não autenticada quando não existem tokens válidos.
+
+```
+## Conclusão
+
+Este projeto representa um esforço abrangente para garantir a qualidade e a confiabilidade de um sistema de autenticação de usuário, desde a implementação do front-end até a integração com a API e a criação de testes automatizados. Ao integrar o front-end com a API, conseguimos criar uma experiência fluida e consistente para os usuários, garantindo que as interações sejam tratadas de maneira adequada nos bastidores.
+
+A criação dos testes automatizados utilizando o framework Cypress desempenha um papel fundamental neste processo, permitindo validar o comportamento esperado do sistema em diferentes cenários. Os testes abrangem desde a carga inicial da página de login até a verificação de acesso autenticado à rota de perfil, garantindo que todas as funcionalidades principais estejam funcionando conforme o esperado.
